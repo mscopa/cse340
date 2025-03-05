@@ -14,3 +14,7 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
+# README.md is a markdown file that is used to explain the project
+# and is not necessary for the project to run
+README.md
