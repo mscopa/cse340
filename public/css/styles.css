@@ -1,6 +1,124 @@
 /******* Change Box Model ***************/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#top-header span a {
+  font-size: 2rem;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+}
+
+nav ul li {
+  padding: 10px;
+  color: #fff;
+}
+
+.hero {
+  position: relative;
+  height: auto;
+}
+
+.hero__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero__text-box {
+  position: absolute;
+  font-size: 1rem;
+  width: 35%;
+  padding: 5px;
+  left: 5%;
+  bottom: 20%;
+  background: rgba(118, 165, 175, 0.5);
+  color: #fff;
+}
+
+.hero__text-box p {
+  margin: 0;
+  padding: 0;
+}
+
+.hero__text-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  margin: 0 auto;
+}
+
+.features-grid__item {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-end;
+  background-color: #76a5af;
+}
+
+.features-grid__image {
+  padding: 5px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.features-grid__item a {
+  font-size: 1.5rem;
+  display: block;
+  width: 100%;
+  background-color: white;
+}
+
+.reviews-list__item {
+  margin: 5%;
+
+}
+
+@media (min-width: 1024px) {
+
+  .hero__text-box {
+    width: 25%;
+  }
+
+  .hero__text-box p {
+    font-size: 2.5rem;
+  }
+
+  .delorean-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+  
+  .delorean-info__features, .delorean-info__reviews {
+    flex: 1;
+  }
 }
