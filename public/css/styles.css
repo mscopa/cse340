@@ -101,6 +101,42 @@ nav ul li {
 
 }
 
+.vehicle-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.vehicle-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-info {
+  width: 100%;
+  max-width: 500px;
+}
+
+.vehicle-info h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.vehicle-info p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.description {
+  margin-top: 15px;
+  font-style: italic;
+}
+
 @media (min-width: 1024px) {
 
   .hero__text-box {
@@ -120,5 +156,24 @@ nav ul li {
   
   .delorean-info__features, .delorean-info__reviews {
     flex: 1;
+  }
+
+  .vehicle-detail {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 30px;
+  }
+
+  .vehicle-image img {
+      max-width: 300px;
+  }
+
+  .vehicle-info h2 {
+      font-size: 26px;
+  }
+
+  .vehicle-info p {
+      font-size: 18px;
   }
 }

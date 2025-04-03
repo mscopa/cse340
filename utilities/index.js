@@ -27,7 +27,7 @@ Util.getNav = async function (req, res, next) {
  /* ***********************
     * Build the classification view HTML
     *************************/
-   Util.buildClassificationGrid = async function (data) {
+Util.buildClassificationGrid = async function (data) {
     let grid
     if (data.length > 0) {
         grid = '<ul id="inv-display">';
@@ -55,7 +55,33 @@ Util.getNav = async function (req, res, next) {
         grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
     }
     return grid;
-   };
+};
+
+/* ***********************
+ * Build the inventory detail view HTML
+ *************************/
+Util.buildVehicleDetail = async function (vehicle) {
+    if (!vehicle) {
+        return '<p class="notice">Vehicle details not found.</p>';
+    }
+
+    let detail = `
+        <section class="vehicle-detail">
+            <div class="vehicle-image">
+                <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
+            </div>
+            <div class="vehicle-info">
+                <h2>${vehicle.inv_make} ${vehicle.inv_model} (${vehicle.inv_year})</h2>
+                <p><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
+                <p><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</p>
+                <p><strong>Color:</strong> ${vehicle.inv_color}</p>
+                <p class="description">${vehicle.inv_description}</p>
+            </div>
+        </section>
+    `;
+
+    return detail;
+};
 
 /* ***********************
  * Middleware For Handling Errors
