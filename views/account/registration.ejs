@@ -6,11 +6,11 @@
 } %>
 <form action="/account/register" method="post">
     <label for="account_firstname">First name</label>
-    <input type="text" name="account_firstname" placeholder="First name" required>
+    <input type="text" name="account_firstname" value="<%= locals.account_firstname %>" placeholder="First name" required>
     <label for="account_lastname">Last name</label>
-    <input type="text" name="account_lastname" placeholder="Last name" required>
+    <input type="text" name="account_lastname" value="<%= locals.account_lastname %>" placeholder="Last name" required>
     <label for="account_email">Email address</label>
-    <input type="email" name="account_email" placeholder="Email" required>
+    <input type="email" name="account_email" value="<%= locals.account_email %>" placeholder="Email" required>
     <label for="account_password">Password</label>
     <input type="password" name="account_password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
     <button type="submit">Register</button>

@@ -1,0 +1,6 @@
+<form action="/inv/add-classification" method="post">
+    <label for="classification_name">Classification name:</label>
+    <input id="classificationName" type="text" name="classification_name" value="<%= locals.classification_name %>"  placeholder="Classification name" pattern="[a-zA-Z0-9]+" required>
+    <button type="submit">Add classification</button>
+</form>
+<%- messages() %>

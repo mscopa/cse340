@@ -1,0 +1,24 @@
+<form class="form-wrapper" id="addInventoryForm" action="/inv/add-inventory" method="post">
+    <label for="classificationList">Classification</label>
+    <%- classificationSelect %>
+    <label for="inv_make">Make</label>
+    <input type="text" id="inv_make" name="inv_make" required value="">
+    <label for="inv_model">Model</label>
+    <input type="text" id="inv_model" name="inv_model" required value="">
+    <label for="inv_year">Year</label>
+    <input type="number" id="inv_year" name="inv_year" required value="">
+    <label for="inv_description">Description</label>
+    <textarea id="inv_description" name="inv_description" required></textarea>
+    <label for="inv_image">Image Path</label>
+    <input type="text" id="inv_image" name="inv_image" required value="">
+    <label for="inv_thumbnail">Thumbnail Path</label>
+    <input type="text" id="inv_thumbnail" name="inv_thumbnail" required value="">
+    <label for="inv_price">Price</label>
+    <input type="number" id="inv_price" name="inv_price" required step="0.01" value="">
+    <label for="inv_miles">Miles</label>
+    <input type="number" id="inv_miles" name="inv_miles" required value="">
+    <label for="inv_color">Color</label>
+    <input type="text" id="inv_color" name="inv_color" required value="">
+    <button type="submit">Add Vehicle</button>
+</form>
+<%- messages() %>
