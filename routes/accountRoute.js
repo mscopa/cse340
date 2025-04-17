@@ -18,9 +18,39 @@ router.post(
 // Process the login attempt
 router.post(
     "/login",
-    (req, res) => {
-        res.status(200).send('login process');
-    }
+    regValidate.loginRules(),
+    regValidate.checkLoginData,
+    utilities.handleErrors(accountsController.accountLogin),
 );
+
+// Route to account managament view
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountsController.buildAccountManagement));
+
+// Route to update account view
+router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountsController.buildUpdateAccount));
+
+// Route to process account update
+router.post(
+    "/update/:account_id",
+    utilities.checkLogin,
+    regValidate.updateAccountRules(),
+    regValidate.checkUpdateData,
+    utilities.handleErrors(accountsController.updateAccount),
+);
+
+// Route to process password update
+router.post(
+    "/update-password/:account_id",
+    utilities.checkLogin,
+    regValidate.updatePasswordRules(),
+    regValidate.checkUpdatePasswordData,
+    utilities.handleErrors(accountsController.updatePassword),
+);
+
+// Route to logout
+router.get("/logout", (req, res) => {
+    res.clearCookie("jwt")
+    res.redirect("/")
+});
 
 module.exports = router;

@@ -9,6 +9,7 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
 const app = express();
+const cookieParser = require("cookie-parser");
 const static = require("./routes/static");
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
@@ -43,6 +44,12 @@ app.use(function(req, res, next) {
 // Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Cookie Parser Middleware
+app.use(cookieParser());
+
+// JWT Middleware
+app.use(utilities.checkJWTToken);
 
 /* ***********************
  * View Engine and Templates

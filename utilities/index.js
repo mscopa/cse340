@@ -1,10 +1,12 @@
 const invModel = require("../models/inventory-model");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const Util = {};
 
  /* ***********************
  * Constructs the nav HTML unordered list
  *************************/
-Util.getNav = async function (req, res, next) {
+Util.getNav = async function () {
     let data = await invModel.getClassifications();
     let list = "<ul>";
     list += '<li><a href="/" title="Home page">Home</a></li>';
@@ -110,5 +112,61 @@ Util.buildClassificationList = async function (classification_id = null) {
  * General Error Handling
  *************************/
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+
+/* ************************
+ * Middleware to check token validity
+ *************************/
+Util.checkJWTToken = (req, res, next) => {
+    // allow access to home view
+    res.locals.loggedin = 0
+    res.locals.accountData = null
+
+    if (req.cookies.jwt) {
+     jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+       if (err) {
+        req.flash("Please log in")
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
+       }
+       res.locals.accountData = accountData
+       res.locals.loggedin = 1
+       next()
+      })
+    } else {
+     next()
+    }
+};
+
+/************************
+ * Check login
+ *************************/
+Util.checkLogin = (req, res, next) => {
+    if (res.locals.loggedin) {
+      next()
+    } else {
+      req.flash("notice", "Please log in.")
+      return res.redirect("/account/login")
+    };
+};
+
+/*************************
+ * Check if user is client, employee or admin
+ *************************/
+Util.checkAccountType = (req, res, next) => {
+    const accountData = res.locals.accountData
+  
+    if (res.locals.loggedin && accountData) {
+      const type = accountData.account_type
+      if (type === "Employee" || type === "Admin") {
+        return next()
+      }
+    }
+    // If not logged in or not an employee/admin, redirect to login page
+    req.flash("notice", "You must be logged in with proper permissions.")
+    return res.redirect("/account/login")
+  }
 
 module.exports = Util;

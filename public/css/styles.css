@@ -158,6 +158,42 @@ nav ul li a:visited {
   font-style: italic;
 }
 
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+#inventoryDisplay thead {
+  background-color: #333;
+  color: #fff;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#inventoryDisplay tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#inventoryDisplay tr:hover {
+  background-color: #f1f1f1;
+}
+
+#inventoryDisplay a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
+
 /* ---  Add Inventory Form--- */
 .form-wrapper {
   max-width: 500px;
